@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Registration Form</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 40px;
+  }
+  form {
+    background-color: white;
+    max-width: 600px;
+    margin: auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  }
+  label {
+    display: block;
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  input[type="checkbox"], input[type="radio"] {
+    width: auto;
+    margin-right: 10px;
+  }
+  input[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  input[type="submit"]:hover {
+    background-color: #218838;
+  }
+</style>
+</head>
+<body>
+<form name="MyForm">
+<label>FirstName: <input type="text" name="FirstName" pattern="^[A-Z][a-z]+$" required</label><br>
+<label>LastName: <input type="text" name="LastName" pattern="^[A-Z][a-z]+$" required</label><br>
+<label>Email: <input type="email" name="Email" required required</label><br>
+<label>PhoneNumber: <input type="text" name="PhoneNumber" pattern="^[0-9]{10}$"</label><br>
+<label>DateOfBirth: <input type="date" name="DateOfBirth" min="1960-01-01" max="2007-01-01" required required</label><br>
+<label>Age: <input type="number" name="Age" required required min="18" max="65"</label><br>
+<label>Resume: <input type="file" name="Resume" accept="image/*" accept="".pdf"" required required</label><br>
+<label>CoverLetter: <input type="file" name="CoverLetter" accept="image/*" accept="".pdf""</label><br>
+<label>Position: <select name="Position"><option value=""Software Engineer"">"Software Engineer"</option><option value=""QA Engineer"">"QA Engineer"</option><option value=""Product Manager"">"Product Manager"</option><option value=""Designer"">"Designer"</option></select> required</label><br>
+<label>PreferredLocation: <br><input type="radio" name="PreferredLocation" value=""Colombo""> Colombo<br><input type="radio" name="PreferredLocation" value=""Kandy""> Kandy<br><input type="radio" name="PreferredLocation" value=""Galle""> Galle<br><input type="radio" name="PreferredLocation" value=""Remote""> Remote<br></label><br>
+<label>WillingToRelocate: <input type="checkbox" name="WillingToRelocate" value="on"></label><br>
+<label>Bio: <textarea name="Bio" rows="5" cols="50"></textarea></label><br>
+<label>PortfolioURL: <input type="text" name="PortfolioURL" pattern="^(https?:\\/\\/)?([\\w.-]+)\\.([a-z]{2,6})([\\/\\w.-]*)*\\/?$"</label><br>
+<label>AgreeToTerms: <input type="checkbox" name="AgreeToTerms" value="on" required> required</label><br>
+<script>
+document.MyForm.addEventListener('submit', function(e) {
+  if (!document.MyForm.checkValidity()) return;
+  if (document.MyForm['Age'].value < '18') {
+    e.preventDefault();
+    alert('"Applicants must be 18 or older."');
+  }
+});
+</script>
+<script>
+document.MyForm.addEventListener('submit', function(e) {
+  if (!document.MyForm.checkValidity()) return;
+  if (document.MyForm['FirstName'].value === '') {
+    e.preventDefault();
+    alert('"First name is required."');
+  }
+});
+</script>
+<script>
+document.MyForm.addEventListener('submit', function(e) {
+  if (!document.MyForm.checkValidity()) return;
+  if (document.MyForm['LastName'].value === '') {
+    e.preventDefault();
+    alert('"Last name is required."');
+  }
+});
+</script>
+<script>
+document.MyForm.addEventListener('submit', function(e) {
+  if (!document.MyForm.checkValidity()) return;
+  if (document.MyForm['Resume'].value === '') {
+    e.preventDefault();
+    alert('"Resume must be uploaded."');
+  }
+});
+</script>
+</form>
+<br><input type="submit" value="Submit">
+</form>

@@ -1,0 +1,31 @@
+# FormLang++ DSL Processor
+
+
+
+## Build Instructions
+$ lex lexer.l
+$ yacc -d parser.y
+$ gcc lex.yy.c y.tab.c -o formgen -ll
+
+$ ./formgen < example.form > output.html
+
+$ ./formgen < example2.form > output.html
+
+
+
+
+## Files
+- lexer.l: Lex source
+- parser.y: Yacc grammar
+- example.form: Sample input
+- output.html: Generated HTML form
+- grammar.pdf: EBNF grammar file
+
+
+
+## Dependencies
+Lex/Yacc or Flex/Bison required.
+
+
+
+Author: [W.M.Chamudini - IT23292154]

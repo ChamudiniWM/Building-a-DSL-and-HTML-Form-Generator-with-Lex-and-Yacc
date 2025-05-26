@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Registration Form</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 40px;
+  }
+  form {
+    background-color: white;
+    max-width: 600px;
+    margin: auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  }
+  label {
+    display: block;
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  input[type="checkbox"], input[type="radio"] {
+    width: auto;
+    margin-right: 10px;
+  }
+  input[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  input[type="submit"]:hover {
+    background-color: #218838;
+  }
+</style>
+</head>
+<body>
+<form name="MyForm">
+<label>FullName: <input type="text" name="FullName" pattern="^[A-Z][a-z]+$" required</label><br>
+<label>Bio: <textarea name="Bio"></textarea></label><br>
+<label>Email: <input type="email" name="Email" required required</label><br>
+<label>Password: <input type="password" name="Password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$" required</label><br>
+<label>Age: <input type="number" name="Age" required required min="18" max="99"</label><br>
+<label>BirthDate: <input type="date" name="BirthDate" min="1926-01-01" max="2007-12-31" required required</label><br>
+<label>ProfilePic: <input type="file" name="ProfilePic" accept="image/*" accept=""image/*"" required required</label><br>
+<label>Gender: <br><input type="radio" name="Gender" value=""Male"" required> Male<br><input type="radio" name="Gender" value=""Female""> Female<br><input type="radio" name="Gender" value=""Other""> Other<br> required</label><br>
+<label>Province: <select name="Province"><option value=""Select Your Province"">"Select Your Province"</option><option value=""Western Province"">"Western Province"</option><option value=""Sothern Province"">"Sothern Province"</option><option value=""Uwa Province"">"Uwa Province"</option><option value=""Nothern Province"">"Nothern Province"</option><option value=""Eastern Province"">"Eastern Province"</option><option value=""Central Province"">"Central Province"</option></select></label><br>
+<label>Newsletter: <input type="checkbox" name="Newsletter" value="on" checked></label><br>
+<label>Terms: <input type="checkbox" name="Terms" value="on" required> required</label><br>
+<script>
+document.MyForm.addEventListener('submit', function(e) {
+  if (!document.MyForm.checkValidity()) return;
+  if (document.MyForm['Age'].value < '18') {
+    e.preventDefault();
+    alert('"You must be at least 18."');
+  }
+});
+</script>
+<script>
+document.MyForm.addEventListener('submit', function(e) {
+  if (!document.MyForm.checkValidity()) return;
+  if (document.MyForm['FullName'].value === '') {
+    e.preventDefault();
+    alert('"Full name cannot be empty."');
+  }
+});
+</script>
+</form>
+<br><input type="submit" value="Submit">
+</form>

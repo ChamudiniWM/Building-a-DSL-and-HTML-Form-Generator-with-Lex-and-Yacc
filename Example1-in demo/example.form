@@ -1,0 +1,33 @@
+form Registration {
+  meta author = "SE2062 Team";
+
+  section PersonalDetails {
+    field FullName: text required = true pattern = "^[A-Z][a-z]+$";
+    field Bio: textarea;
+    field Email: email required = true;
+    field Password: password required = true pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$";
+    field Age: number required = true min = 18 max = 99;
+    field BirthDate: date required = true min= "1926-01-01" max= "2007-12-31";
+    field ProfilePic: file accept = "image/*" required = true;
+  }
+
+  section Preferences {
+    field Gender: radio options = ["Male", "Female", "Other"] required = true;
+    field Province: dropdown options = ["Select Your Province", "Western Province", "Sothern Province", "Uwa Province", "Nothern Province", "Eastern Province", "Central Province"];
+    field Newsletter: checkbox default=true;
+  }
+
+  section Agreement {
+    field Terms: checkbox required = true;
+  }
+
+  validate {
+    if Age < 18 {
+      error "You must be at least 18.";
+    }
+
+    if FullName == "" {
+      error "Full name cannot be empty.";
+    }
+  }
+}

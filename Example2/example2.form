@@ -1,0 +1,52 @@
+form JobApplication {
+  meta author = "SE2062 Team";
+  
+
+  section ApplicantInfo {
+    field FirstName: text required = true pattern = "^[A-Z][a-z]+$";
+    field LastName: text required = true pattern = "^[A-Z][a-z]+$";
+    field Email: email required = true;
+    field PhoneNumber: text pattern = "^[0-9]{10}$";
+    field DateOfBirth: date required = true min = "1960-01-01" max = "2007-01-01";
+    field Age: number required = true min = 18 max = 65;
+  }
+
+  section Documents {
+    field Resume: file accept = ".pdf" required = true;
+    field CoverLetter: file accept = ".pdf";
+  }
+
+  section PositionDetails {
+    field Position: dropdown options = ["Software Engineer", "QA Engineer", "Product Manager", "Designer"] required = true;
+    field PreferredLocation: radio options = ["Colombo", "Kandy", "Galle", "Remote"];
+    field WillingToRelocate: checkbox default = false;
+  }
+
+  section AdditionalInfo {
+    field Bio: textarea rows = 5 cols = 50;
+    field PortfolioURL: text pattern = "^(https?:\\/\\/)?([\\w.-]+)\\.([a-z]{2,6})([\\/\\w.-]*)*\\/?$";
+  }
+
+  section Consent {
+    field AgreeToTerms: checkbox required = true;
+  }
+
+  validate {
+    if Age < 18 {
+      error "Applicants must be 18 or older.";
+    }
+
+    if FirstName == "" {
+      error "First name is required.";
+    }
+
+    if LastName == "" {
+      error "Last name is required.";
+    }
+
+    if Resume == "" {
+      error "Resume must be uploaded.";
+    }
+  }
+}
+
